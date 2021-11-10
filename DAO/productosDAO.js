@@ -1,13 +1,13 @@
-const conexion = require('../DB/conexionDB.js')
+const conexion = require('../DB/conexionDB.js');
 const productoSchema = conexion.Schema({
-    descripcion = String,
-    unidadMedida = String,
-    tipoProducto = String,
-    stock = String,
-    valorVenta = String
+    descripcion: String,
+    unidadMedida: String,
+    tipoProducto: String,
+    stock: String,
+    valorVenta: String
 }, {
     collection: 'Productos',
     versionKey: false
 });
-const ProductosDao = conexion.model('Productos', personaSchema);
+const ProductosDao = conexion.model('Productos', productoSchema);
 module.exports = ProductosDao;
