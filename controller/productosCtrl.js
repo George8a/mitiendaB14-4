@@ -4,17 +4,17 @@ const ProductosDao = require("../models/productosDAO");
 const productosCrl = {};
 
 
-productosCrl.insertar = async(producto) => {
+productosCrl.listar = async() => {
     try {
-        return await ProductosDao.create(producto);
+        return await ProductosDao.find();
     } catch (error) {
-        console.log("productosCrl.insertar" + error);
+        console.log("ProductosDao.find" + error);
 
     }
 }
 
 
-productosCrl.listar = async(producto) => {
+productosCrl.insertar = async(producto) => {
     try {
         return await ProductosDao.create(producto);
     } catch (error) {

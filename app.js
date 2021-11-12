@@ -20,6 +20,20 @@ app.post('/api/productos', async(request, response) => {
 
     }
 });
+
+
+app.get('/api/productos', async(request, response) => {
+    try {
+
+        const producto = await productosCrl.listar();
+        response.status(201).json(producto);
+    } catch (error) {
+
+        console.log("Error al guardar" + error);
+        response.status(400).send("Error al guardar: " + error);
+
+    }
+});
 app.listen(1900, () => {
     console.log('Server runnig...')
 })
