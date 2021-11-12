@@ -8,6 +8,7 @@ app.use(express.json());
 
 app.use(express.json());
 
+
 app.post('/api/productos', async(request, response) => {
     try {
         let producto = request.body;
@@ -21,7 +22,6 @@ app.post('/api/productos', async(request, response) => {
     }
 });
 
-
 app.get('/api/productos', async(request, response) => {
     try {
 
@@ -34,6 +34,34 @@ app.get('/api/productos', async(request, response) => {
 
     }
 });
+
+app.put('/api/productos', async(request, response) => {
+    try {
+        let producto = request.body;
+        await productosCrl.actualizar(producto)
+        response.status(200).send("producto actualizado");
+    } catch (error) {
+        console.log("Error put" + error);
+        response.status(400).send("Error Put: " + error);
+
+    }
+
+})
+
+
+app.delete('/api/productos', async(request, response) => {
+    try {
+        let id = request.params.id;
+        await productosCrl.eliminar(id)
+        response.status(200).send("producto eliminado");
+    } catch (error) {
+        console.log("Error put" + error);
+        response.status(400).send("Error Put: " + error);
+
+    }
+
+})
+
 app.listen(1900, () => {
     console.log('Server runnig...')
 })
