@@ -1,7 +1,7 @@
 const { request, response } = require("express");
 const express = require("express");
 const productosCrl = require("./controller/productosCtrl");
-const ProductosDao = require("./DAO/productosDAO");
+const ProductosDao = require("./models/productosDAO");
 
 const app = express();
 app.use(express.json());
