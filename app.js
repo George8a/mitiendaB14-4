@@ -15,8 +15,8 @@ app.post('/api/productos', async(request, response) => {
         response.status(200).send("El producto ha sido guardado con exito");
     } catch (error) {
 
-        console.log("Error al guardar" + error);
-        response.status(400).send("Error al guardar: " + error);
+        console.log("Error al listar" + error);
+        response.status(400).send("Error al listar: " + error);
 
     }
 });
