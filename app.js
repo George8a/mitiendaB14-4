@@ -49,7 +49,7 @@ app.put('/api/productos', async(request, response) => {
 })
 
 
-app.delete('/api/productos', async(request, response) => {
+app.delete('/api/productos/:id', async(request, response) => {
     try {
         let id = request.params.id;
         await productosCrl.eliminar(id)
