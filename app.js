@@ -2,12 +2,14 @@ const { request, response } = require("express");
 const express = require("express");
 const productosCrl = require("./controller/productosCtrl");
 const ProductosDao = require("./models/productosDAO");
+const usuariosCrl = require("./controller/usuariosCtrl");
+const usuarioDao = require("./models/usuariosDAO");
 
 const app = express();
 app.use(express.json());
 
 
-
+/*************************inicio productos************************************ **/
 
 app.post('/api/productos', async(request, response) => {
     try {
@@ -50,10 +52,52 @@ app.put('/api/productos', async(request, response) => {
 
 
 app.delete('/api/productos/:id', async(request, response) => {
+        try {
+            let id = request.params.id;
+            await productosCrl.eliminar(id)
+            response.status(200).send("producto eliminado");
+        } catch (error) {
+            console.log("Error put" + error);
+            response.status(400).send("Error Put: " + error);
+
+        }
+
+    })
+    /*************************fin productos************************************ **/
+
+/*************************inicio usuarios************************************ **/
+
+app.post('/api/usuarios', async(request, response) => {
     try {
-        let id = request.params.id;
-        await productosCrl.eliminar(id)
-        response.status(200).send("producto eliminado");
+        let usuario = request.body;
+        await usuariosCrl.insertar(usuario);
+        response.status(200).send("El usuario ha sido guardado con exito");
+    } catch (error) {
+
+        console.log("Error al insertar" + error);
+        response.status(400).send("Error al insertar: " + error);
+
+    }
+});
+
+app.get('/api/usuarios', async(request, response) => {
+    try {
+
+        const usuario = await usuariosCrl.listar();
+        response.status(201).json(usuario);
+    } catch (error) {
+
+        console.log("Error al listar" + error);
+        response.status(400).send("Error al listar: " + error);
+
+    }
+});
+
+app.put('/api/usuarios', async(request, response) => {
+    try {
+        let usuario = request.body;
+        await usuariosCrl.actualizar(usuario)
+        response.status(200).send("usuario actualizado");
     } catch (error) {
         console.log("Error put" + error);
         response.status(400).send("Error Put: " + error);
@@ -61,6 +105,24 @@ app.delete('/api/productos/:id', async(request, response) => {
     }
 
 })
+
+
+app.delete('/api/usuarios/:id', async(request, response) => {
+        try {
+            let id = request.params.id;
+            await usuariosCrl.eliminar(id)
+            response.status(200).send("usuario eliminado");
+        } catch (error) {
+            console.log("Error put" + error);
+            response.status(400).send("Error Put: " + error);
+
+        }
+
+    })
+    /*************************fin usuarios************************************ **/
+
+
+
 
 app.listen(1900, () => {
     console.log('Server runnig...')
