@@ -6,7 +6,7 @@ const ProductosDao = require("./models/productosDAO");
 const app = express();
 app.use(express.json());
 
-app.use(express.json());
+
 
 
 app.post('/api/productos', async(request, response) => {
