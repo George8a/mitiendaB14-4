@@ -27,7 +27,7 @@ app.post('/api/productos', async(request, response) => {
     } catch (error) {
 
         console.log("Error al listar" + error);
-        response.status(400).send("Error al listar: " + error);
+        response.status(400).json(producto);
 
     }
 });
@@ -49,7 +49,7 @@ app.put('/api/productos', async(request, response) => {
     try {
         let producto = request.body;
         await productosCrl.actualizar(producto)
-        response.status(200).send("producto actualizado");
+        response.status(200).json(producto);
     } catch (error) {
         console.log("Error put" + error);
         response.status(400).send("Error Put: " + error);
