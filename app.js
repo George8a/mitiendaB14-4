@@ -1,5 +1,6 @@
 const { request, response } = require("express");
 const express = require("express");
+const cors = request("cors");
 const productosCrl = require("./controller/usuariosCtrl");
 const ProductosDao = require("./models/productosDAO");
 const usuariosCrl = require("./controller/usuariosCtrl");
@@ -9,6 +10,7 @@ const clienteproveedoresDao = require("./models/clienteProveedorDAO");
 
 const app = express();
 app.use(express.json());
+app.use(cors());
 
 
 /*************************inicio productos************************************ **/
