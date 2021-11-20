@@ -1,19 +1,20 @@
 const conexion = require('../DB/conexionDB.js');
 const facturaSchema = conexion.Schema({
 
-    codigoFactura: Int,
+    codigoFactura: Number,
     tipoTransacion: String,
-    fecha: Date,
+    fecha: String,
     productos: [{
 
         descripcion: String,
         unidadMedida: String,
         tipoProducto: String,
+        cantidad: String,
         valorVenta: String
 
 
     }],
-    totalFactura: int,
+    totalFactura: Number,
     tipoDocumento: String,
     documento: String,
     tipoPersona: String,
@@ -29,5 +30,5 @@ const facturaSchema = conexion.Schema({
     collection: 'Facturas',
     versionKey: false
 });
-const FacturasDao = conexion.model('Facturas', productoSchema);
+const FacturasDao = conexion.model('Facturas', facturaSchema);
 module.exports = FacturasDao;

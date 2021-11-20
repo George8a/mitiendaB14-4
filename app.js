@@ -1,12 +1,16 @@
 const { request, response } = require("express");
 const express = require("express");
-const cors = request("cors");
+const cors = require("cors");
+/*-______________________________*/
 const productosCrl = require("./controller/usuariosCtrl");
 const ProductosDao = require("./models/productosDAO");
 const usuariosCrl = require("./controller/usuariosCtrl");
 const usuarioDao = require("./models/usuariosDAO");
 const clienteproveedoresCrl = require("./controller/clienteProveedorCtrl");
 const clienteproveedoresDao = require("./models/clienteProveedorDAO");
+const facturasCrl = require("./controller/facturasCtrl");
+const facturasDao = require("./models/facturasDAO");
+
 
 const app = express();
 app.use(express.json());
@@ -180,6 +184,62 @@ app.delete('/api/clienteProveedores/:id', async(request, response) => {
 
     })
     /*************************fin clienteProveedores************************************ **/
+    /*************************inicio facturas************************************ **/
+
+app.post('/api/facturas', async(request, response) => {
+    try {
+        let factura = request.body;
+        await facturasCrl.insertar(factura);
+        response.status(200).send("La factura ha sido guardado con exito");
+    } catch (error) {
+
+        console.log("Error al insertar" + error);
+        response.status(400).send("Error al insertar: " + error);
+
+    }
+});
+
+app.get('/api/facturas', async(request, response) => {
+    try {
+
+        const factura = await facturasCrl.listar();
+        response.status(201).json(factura);
+    } catch (error) {
+
+        console.log("Error al listar" + error);
+        response.status(400).send("Error al listar: " + error);
+
+    }
+});
+
+app.put('/api/facturas', async(request, response) => {
+    try {
+        let factura = request.body;
+        await facturasCrl.actualizar(factura);
+        response.status(200).send("factura actualizada");
+    } catch (error) {
+
+        console.log("Error put" + error);
+        response.status(400).send("Error Put: " + error);
+
+    }
+
+})
+
+
+app.delete('/api/facturas/:id', async(request, response) => {
+        try {
+            let id = request.params.id;
+            await facturasCrl.eliminar(id)
+            response.status(200).send("factura eliminada");
+        } catch (error) {
+            console.log("Error delete" + error);
+            response.status(400).send("Error delete: " + error);
+
+        }
+
+    })
+    /*************************fin facturas************************************ **/
 
 
 
