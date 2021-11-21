@@ -5,12 +5,14 @@ const productosCrl = {};
 
 
 productosCrl.listar = async() => {
-    try {
-        return await ProductosDao.find();
-    } catch (error) {
-        console.log("ProductosDao.find" + error);
 
-    }
+    const producto = await ProductosDao.find();
+
+    return producto;
+
+
+
+
 }
 
 productosCrl.actualizar = async(producto) => {

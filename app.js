@@ -2,7 +2,7 @@ const { request, response } = require("express");
 const express = require("express");
 const cors = require("cors");
 /*-______________________________*/
-const productosCrl = require("./controller/usuariosCtrl");
+const productosCrl = require("./controller/productosCtrl");
 const ProductosDao = require("./models/productosDAO");
 const usuariosCrl = require("./controller/usuariosCtrl");
 const usuarioDao = require("./models/usuariosDAO");
@@ -23,7 +23,7 @@ app.post('/api/productos', async(request, response) => {
     try {
         let producto = request.body;
         await productosCrl.insertar(producto);
-        response.status(200).send("El producto ha sido guardado con exito");
+        response.status(200).json();
     } catch (error) {
 
         console.log("Error al listar" + error);
@@ -37,6 +37,7 @@ app.get('/api/productos', async(request, response) => {
 
         const producto = await productosCrl.listar();
         response.status(201).json(producto);
+
     } catch (error) {
 
         console.log("Error al guardar" + error);

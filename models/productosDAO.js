@@ -9,5 +9,6 @@ const productoSchema = conexion.Schema({
     collection: 'Productos',
     versionKey: false
 });
+
 const ProductosDao = conexion.model('Productos', productoSchema);
 module.exports = ProductosDao;
