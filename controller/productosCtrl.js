@@ -34,6 +34,7 @@ productosCrl.eliminar = async(id) => {
 
 productosCrl.insertar = async(producto) => {
     try {
+        delete producto._id;
         return await ProductosDao.create(producto);
     } catch (error) {
         console.log("productosCrl.insertar" + error);

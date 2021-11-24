@@ -4,7 +4,8 @@
     "description": "Proyecto para misión TIC-UIS",
     "main": "index.js",
     "scripts": {
-        "dev": "nodemon app.js"
+        "start": "node app.js",
+        "app": "nodemon app.js"
     },
     "repository": {
         "type": "git",
@@ -24,5 +25,9 @@
     },
     "devDependencies": {
         "nodemon": "^2.0.14"
+    },
+    "engines": {
+        "node": "v16.13.0",
+        "npm": "8.1.0"
     }
 }

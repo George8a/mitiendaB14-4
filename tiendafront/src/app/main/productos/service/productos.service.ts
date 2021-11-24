@@ -22,7 +22,7 @@ export class ProductosService {
     return this._http.put<string>(this.url, productos);
   }
   eliminar(id: string) : Observable<string>{
-    return this._http.post<string>(this.url, + "/" + id);
+    return this._http.delete<string>(this.url + "/" + id);
   }
 }
 

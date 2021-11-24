@@ -64,7 +64,7 @@ app.delete('/api/productos/:id', async(request, response) => {
         try {
             let id = request.params.id;
             await productosCrl.eliminar(id)
-            response.status(200).send("producto eliminado");
+            response.status(200).json({ "prodcuto": "producto eliminado" });
         } catch (error) {
             console.log("Error put" + error);
             response.status(400).send("Error Put: " + error);
@@ -245,6 +245,7 @@ app.delete('/api/facturas/:id', async(request, response) => {
 
 
 
-app.listen(1900, () => {
-    console.log('Server runnig...')
+const PORT = process.env.PORT || 4000;
+app.listen(PORT, () => {
+    console.log('Server runnig...' + PORT)
 })

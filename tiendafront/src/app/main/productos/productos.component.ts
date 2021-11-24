@@ -30,13 +30,23 @@ export class ProductosComponent implements OnInit {
     this.productos = new ProductosTO();
   }
   guardar(){
-  this._productosService.guardar(this.productos).subscribe(
-    data => {
+    if (this.productos._id == ""){
+      this._productosService.guardar(this.productos).subscribe(
+        data => {
+          console.log(data);
+          this.listarProductos();
+          this.limpiarFormulario();
+    }
+  );
+}else{
+  this._productosService.modificar(this.productos).subscribe(
+    data =>{
       console.log(data);
       this.listarProductos();
       this.limpiarFormulario();
     }
-  );
+  )
+}
 }
   eliminar(id: string){
     this._productosService.eliminar(id).subscribe(
@@ -45,6 +55,10 @@ export class ProductosComponent implements OnInit {
         this.listarProductos();
       }
     );
+
+  }
+  mostrar(pProducto: ProductosTO){
+    this.productos = pProducto;
 
   }
 }
